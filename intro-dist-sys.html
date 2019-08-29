@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>What is a Distributed System?</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="What are the goals of a Distributed System?">
+
+        <meta name="author" content="Rahul Kumar">
+
+        <meta name="tags" content="introduction">
+        <meta name="tags" content="distributed systems">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Engineering Notes">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="/author/rahul-kumar.html">
+	<meta property="og:url" content="/intro-dist-sys.html">
+	<meta property="og:title" content="What is a Distributed System?">
+	<meta property="article:published_time" content="2019-08-25 10:20:00-07:00">
+            <meta property="og:description" content="What are the goals of a Distributed System?">
+
+            <meta property="og:image" content="/theme/images/post-bg.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@portable_alpha">
+        <meta name="twitter:title" content="What is a Distributed System?">
+
+            <meta name="twitter:image" content="/theme/images/post-bg.jpg">
+
+            <meta name="twitter:description" content="What are the goals of a Distributed System?">
+</head>
+
+<body class="article-intro-dist-sys">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Engineering Notes</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="/pages/articles.html">Articles</a></li>
+                        <li><a href="/pages/projects.html">Projects</a></li>
+                        <li><a href="/pages/aboutme.html">About Me</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>What is a Distributed System?</h1>
+                            <h3 class="subheading">What are the goals of a Distributed System?</h3>
+                        <span class="meta">Posted by
+                                <a href="/author/rahul-kumar.html">Rahul Kumar</a>
+                             on Sun 25 August 2019
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <h3>1. Introduction</h3>
+<p>In this article, I'm going to introduce you to distributed systems.
+These systems are ubuquitous today, even though we may not know that we are
+dealing with one when we use them. And that's that whole point of distributed
+systems. In a well designed distributed application all the complexity should be abstracted away from the end user. </p>
+<p>I also talk about the different kinds of systems that have been deployed today and their
+applications. I also discuss the goals of a distributed system and how we
+can ensure that we design a system that achieves these goals. </p>
+<h3>2. The view from 30,000 feet.</h3>
+<p>Recent years has seen the proliferation of a large number of distributed
+systems that are in operation. These systems are not just the obscure system
+operated by large enterprises to manage their business. These are systems that
+you and I use almost on a daily basis. Google search engine, YouTube, LinkedIn,
+Facebook, Twitter, Instagram, WhatsApp, etc. are all examples of distributed
+systems that fill very different needs for it's users.</p>
+<p>These systems are unlike the High Performance Computing (HPC) clusters that
+underwent their own boom in the 90's. HPC's are useful for compute intensive
+tasks like simulating physical processes, weather forecasting, orbital
+mechanics for space missions and many more. These tasks require a
+very large amount of CPU processing capacity that the HPC clusters are well
+suited to provide.</p>
+<p>This article however, is not about compute intensive tasks that the HPC
+clusters handle. It's about a newer class of problems that have come up in
+recent years.</p>
+<p>In the early 2000's, a few things were going on that created the perfect
+condition to give birth to this class of distributed systems. Disk storage
+capacity cost fell off a cliff, commodity CPU's became multi-core, and the rise of ultra-personal computing in the
+form of smartphones. It was a marriage made in heaven. Smartphones had the
+capacity to generate huge amounts of data, we could process the data more
+efficitnely using multi-core CPU's and cheap storage meant we could
+actually save the date before we could decide what to do with it.</p>
+<p>Once we were able to store the data, we had to figure out how to use it.</p>
+<p>Enter BigData. Even though BigData and distributed systems in general are not
+the same thing, they are closely related. BigData tools are a sub-component of
+today's distributed systems. We wouldn't need distributed systems if we didn't
+have access to a huge amount of data that could not be saved on one system.</p>
+<p>Distributed databases that form the backbone of the BigData tools out there
+also form the backbone of today's distributed systems.</p>
+<h3>3. So what is a Distributed System anyway?</h3>
+<p>Formally, a distributed system can be defined as 
+.. a collection of autonomous computing elements that appears to it's users as
+a single coherent system.[1]</p>
+<p>The fact that the application connects to different servers based on where the
+user is connecting from, should be transparent to the user and work seamlessly.</p>
+<p>Informally we can consider a system as distributed if it allows multiple users
+to utilize and share it's resources and functionality at a given time. In addition such a
+system has the ability to serve an increasingly growing number of clients by
+adding more hardware resources. In most modern systems hardware resources are
+extra hardware nodes that distribute the load of increasing clients.</p>
+<p>What makes distributed systems so fascinating in my opinion, is not that they
+provide functionality to a large number of it's users, but the fact that they
+do so by building upon multiple underlying components, most of which work on
+the assumption that the underlying hardware and software components are prone
+to error and failure.</p>
+<p>A distributed system is thus expected to continue working in the face of node
+failures, disk drive failures, network outages, human error and unexpected user
+interaction.</p>
+<p>Software engineers and system architects are expected to know various design
+patterns utilized in distributed systems and to have a technical understanding
+of the various underlying components that make up distributed systems, along
+with their tradeoffs.</p>
+<p>But even more important than the technical details of the technologies, are
+principles of distributed systems that don't change very much, and these tools
+have to adhere to these principles. If you understand these principles, you
+will know how to create well designed systems regardless of which tools are
+currently in vogue.</p>
+<p>As a system designer, your goal is to decide which technology is appropriate
+for which purpose and know how different tools can be combined to form the
+foundation of well architected applications. Once you are able to do this, you
+will have a good intuition for what your system is doing under the hood. That's
+how you will be able to make good design decisions and create robust
+distributed systems.</p>
+<h3>4. Goals of a Distributed System</h3>
+<p>There are three major goals of a distributed system that a designer should
+always have in mind while architecting such a system: Reliability, Scalability
+and Maintainability. [2]</p>
+<h4>a. Reliability</h4>
+<p>Reliability of a system is defined by how it behaves when faced with things
+going wrong. This could mean hardware components failing, or entire server
+nodes failing or any software components that cause cascading failures in
+multiple nodes or processes.</p>
+<p>A distributed system is expected to gracefully recover from such failure and
+provide a consistent level of service to it's users.</p>
+<p>Designers use different tools to ensure a system is as reliable as possible to
+these different challenges.</p>
+<p>To ensure the system is tolerant of hardware failures, designers use a
+combination of underlying tools that have hardware tolerance built in, along
+with distribution of application code onto multiple machines. If any one node
+fails, then client requests are forwarded to nodes that are still online, thus
+providing end users service in the face of hardware failures.</p>
+<p>For software errors, it is recommended that designers thoroughly test the
+various components of the application by executing unit tests, system
+integration tests and manual test to ensure the application is tolerant of
+software bugs.</p>
+<p>In addition to hardware and software issues, we should not overlook the human
+element. Humans make mistakes, so a system should either be tolerant, or have
+the ability to quickly reverse human errors. Implementing a detailed and clear
+monitoring ability can help operations teams to look for early warning signs of
+system issues and take steps to resolve them.</p>
+<p>The system should not attempt to, nor can it be designed to prevent issues. A
+good slogan for a good system designer is the philosophy behind Erlang: "Let it
+fail". I'll have more to talk about Erlang and Elixir later on in this series.</p>
+<p>If a system is design to run reliably, it can transparently distribute load to
+multiple hardware and software resources thus fulfilling the first goal of
+Reliability.</p>
+<h4>b. Scalability</h4>
+<p>Scalability is the ability of a system to handle increased load on it's
+resources. Most often, the way to handle increased load is to scale the system.
+Scaling can be done in two ways: Scale up, or scale out.</p>
+<p>Scaling up has been the traditional response to increased load. It involved
+purchasing a more powerful machine with faster processor, perhaps one with
+mulitple CPU's and cores, along with larger memory, maybe one with a high speed
+SSD. </p>
+<p>Scaling up, however can become very expensive very quickly and does not
+guarantee scalability if the load increases even more. </p>
+<p>Most modern distributed system today are designed to scale out. This gives the
+designers the ability to add more machines to the system to handle the higher
+load.</p>
+<p>In order to figure out the architecture of a system that can scale out, we must
+quantify what increased load actually means. Load could mean different things
+in different contexts. For a webserver it could be requests/second, it could be
+the ratio of reads/writes in a database, the number of simultaneous active
+users in a system, or a hit rate on a cache. </p>
+<p>Some of the questions we can ask to reason about load and scalability are[2]:</p>
+<p>1) When you increase a load parameter and keep system resources unchanged, how
+is the performance of the system affected?</p>
+<p>2) When you increase a load parameter, how much do you need to increase
+resources if you want to keep your performance unchanged?</p>
+<p>The only way to ensure that scaling a system leads to an improvement in the
+load parameter is to constantly monitor the relevant load parameter in your
+system. The relevant parameter is going to be specific to your system, but you
+have to ensure that you monitor it over time so that you get an idea whether
+scaling the system actually had any improvement.</p>
+<p>The various techniques that we have available to us as architects will be
+depdendent on the specific application we are trying to build, however scalable
+architectures are built from general purpose building blocks arranged in
+familiar patterns [2].</p>
+<h4>c. Maintainability</h4>
+<p>Now that our system is both reliable and scalable, it won't do us any good if
+we cannot maintain it properly.</p>
+<p>In this context, maintenance involves three different characteristics of the
+system: operability, simplicity and evolvability.</p>
+<h5>i) Operability</h5>
+<p>Operability essentially means to make the system easy to operate. The
+operations team should be able to monitor the system resources and scalability
+parameters in real time and react to any systemic issues that may arise due to
+unforseen spikes in load.</p>
+<h5>ii) Simplicity</h5>
+<p>The system should also be easy for new engineers to understand. This is done by
+removing as much complexity from the system as possible. In addition to
+reducing complexity, de-coupling the various system components also helps to
+reason about the overall system. Doing so abstracts away complexity within the
+various sub-components of the system.</p>
+<h5>iii) Evolvability</h5>
+<p>The system should be easy to update in the future as requirements change. The
+system should be adaptable to changing requirements and importantly to higher
+levels of usability.</p>
+<p>Simple and easy to understand systems are usually easier to modify than complex
+ones.</p>
+<h3>6. Conclusion: Why should you care about Distributed Systems.</h3>
+<p>Whether you like it or not, whether you know it or not, you are building
+distributed scalable systems.</p>
+<p>Are you a Business Intelligence Analyst or developer? Guess what? When you
+create BI solutions for teams located in multiple timezones with application
+servers in different locations, you are creating
+a distributed system. You might not use the same open source tools that power the
+largest systems, your system still has some of the same requirements even
+though your client base is not in the millions.</p>
+<p>And if you are a BI Analyst, most of the complexity is abstracted away into
+the vendor products that are ubiquitous in enterprise today. </p>
+<p>However, the largest distributed systems that power the most popular apps today
+are not turnkey vendor products. They might use sub-components from various
+vendors like MongoDB, Redis Labs, etc to build the system, but no one vendor
+can support ever changing set of end user requirements. To do that you the system
+architect need to design the system in ways discussed above using mostly open
+source tools that form the backbone of these systems.</p>
+<p>Once you truly understand the design principles behind the various tools and
+technologies and some of the design patterns that power these systems, you may
+be well on your way to designing the next billion dollar idea.</p>
+<h3>7. References</h3>
+<ol>
+<li>van Steen, Maarten, Tanenbaum, Andrew S. (2016) A brief introduction to
+distributed systems.</li>
+<li>Kleppmann, Martin (2017) Designing Data-Intensive Application, First Edition</li>
+</ol>
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="/tag/introduction.html">introduction</a>, <a href="/tag/distributed-systems.html">distributed systems</a></p>
+        </div>
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://twitter.com/portable_alpha">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/rahulmkumar">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/rahulkumar21/">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>. <br />        &copy;  Rahul Kumar
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
